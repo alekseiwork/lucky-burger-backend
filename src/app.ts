@@ -68,7 +68,7 @@ app.get('*', (req, res) => {
 
 // Starting server and outputting IP and port information
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, () => {
   const address = server.address();
   if (typeof address === 'string') {
     console.log(`Server is running on address ${address}`);
