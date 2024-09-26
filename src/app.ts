@@ -66,5 +66,18 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// Starting server and outputting IP and port information
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, '0.0.0.0', () => {
+  const address = server.address();
+  if (typeof address === 'string') {
+    console.log(`Server is running on address ${address}`);
+  } else if (address && address.address) {
+    console.log(
+      `Server is running on http://${address.address}:${address.port}`
+    );
+  }
+});
+
 // Exporting server and io
 export { server, io };
