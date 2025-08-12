@@ -4,7 +4,7 @@ import {
   getOrders,
   updateOrder,
   deleteOrder,
-} from '../controllers/orderController'; // Импортируйте функцию updateOrder
+} from '../controllers/orderController';
 import { adminAuth } from '../middleware/authMiddleware';
 
 const router = Router();
