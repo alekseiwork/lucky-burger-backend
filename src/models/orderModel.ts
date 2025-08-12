@@ -6,17 +6,15 @@ interface IOrderItem {
   price: number;
 }
 
-// Interface for TypeScript types
 interface IOrder extends Document {
   name: string;
   phone: string;
   address: string;
   items: IOrderItem[];
   total: number;
-  status: string; // Добавляем поле статуса
+  status: string; 
 }
 
-// Mongoose schema
 const OrderSchema: Schema = new Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
@@ -29,9 +27,8 @@ const OrderSchema: Schema = new Schema({
     },
   ],
   total: { type: Number, required: true },
-  status: { type: String, default: 'pending' }, // Поле со статусом, по умолчанию 'pending'
+  status: { type: String, default: 'pending' },
 });
 
-// Exporting the model
 const Order = mongoose.model<IOrder>('Order', OrderSchema);
 export default Order;
