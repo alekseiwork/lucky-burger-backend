@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-// Interface for TypeScript types
 interface IMenu extends Document {
   name: string;
   nameRU: string;
@@ -11,7 +10,6 @@ interface IMenu extends Document {
   category: string;
 }
 
-// Mongoose schema
 const MenuSchema: Schema = new Schema({
   name: { type: String, required: true },
   nameRU: { type: String, required: true },
@@ -22,6 +20,5 @@ const MenuSchema: Schema = new Schema({
   category: { type: String, required: true },
 });
 
-// Exporting the model
 const Menu = mongoose.model<IMenu>('Menu', MenuSchema);
 export default Menu;
