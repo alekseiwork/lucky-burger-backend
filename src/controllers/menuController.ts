@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import Menu from '../models/menuModel';
 // import menu from '../dev_data/menu.json';
 
-// Creating a menu option
 export const createMenu = async (req: Request, res: Response) => {
   try {
     const { name, nameRU, nameEN, portion, weight, price, category } = req.body;
@@ -24,7 +23,6 @@ export const createMenu = async (req: Request, res: Response) => {
   }
 };
 
-// Getting the menu
 export const getMenu = async (req: Request, res: Response) => {
   try {
     const { category } = req.query;
@@ -35,29 +33,25 @@ export const getMenu = async (req: Request, res: Response) => {
   }
 };
 
-// Deleting the menu item by ID
 export const deleteMenu = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log(`Received request to delete menu item with ID: ${id}`); // Логируем ID
+    console.log(`Received request to delete menu item with ID: ${id}`); 
 
-    // Поиск меню по ID
     const menuItem = await Menu.findById(id);
-    console.log(`Menu item found: ${menuItem}`); // Логируем найденный элемент
+    console.log(`Menu item found: ${menuItem}`); 
 
     if (!menuItem) {
-      console.log(`Menu item with ID: ${id} not found`); // Логируем, если элемент не найден
+      console.log(`Menu item with ID: ${id} not found`); 
       return res.status(404).json({ message: 'Menu item not found' });
     }
 
-    // Удаление найденного элемента
     await menuItem.deleteOne();
-    console.log(`Menu item with ID: ${id} has been deleted`); // Логируем, что элемент удален
+    console.log(`Menu item with ID: ${id} has been deleted`); 
 
-    // Возвращаем успешный ответ
     res.status(200).json({ message: 'Menu item deleted successfully' });
   } catch (err) {
-    console.error('💥💥💥 Deleting menu error:', err); // Логируем ошибку
+    console.error('💥💥💥 Deleting menu error:', err);
     res.status(500).json({ message: '💥💥💥 Deleting menu error', error: err });
   }
 };
@@ -91,6 +85,6 @@ export const deleteMenu = async (req: Request, res: Response) => {
 //   } catch (err) {
 //     res
 //       .status(500)
-//       .json({ message: '💥💥💥 Uploading menu error', error: err });
+//       .json({ message: 'Uploading menu error', error: err });
 //   }
 // };
